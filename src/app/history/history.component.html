@@ -1,0 +1,78 @@
+<app-header></app-header>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-lg-12">
+      <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group row">
+          <label for="account" class="col-sm-4 col-form-label col-form-label">
+            Account No
+          </label>
+          <div class="col-sm-6">
+            <input type="text"
+                   formControlName="account"
+                   name="account"
+                   id="account"
+                   class="form-control"
+                   required />
+            <div class="alert alert-danger mt-3" *ngIf="account.invalid && (account.dirty || account.touched)">
+              Please provide a valid Account No
+            </div>
+            <div class="alert alert-danger" *ngIf="account.hasError('isAccountInvalid')">
+              Invalid Account No
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <button type="submit" [disabled]="!accountForm.valid" class="btn btn-block btn-primary">
+              Search
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <hr class="mb-5"/>
+
+  <div *ngIf="balances">
+
+    <div class="row">
+      <div class="col-lg-12">
+        <h3></h3>
+        <table class="table">
+          <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">A\C No</th>
+            <th scope="col">A\C Holder</th>
+            <th scope="col">Deposit</th>
+            <th scope="col">Withdraw</th>
+            <th scope="col">Balance</th>
+            <th scope="col">Date</th>
+            <th scope="col">Description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let balance of balances; let i = index">
+            <th scope="row">{{ i + 1}}</th>
+            <td>{{ balance.accountNo }}</td>
+            <td>{{ balance.accountHolder }}</td>
+            <td>{{ balance.debit }}</td>
+            <td>{{ balance.credit }}</td>
+            <td>{{ balance.balance }}</td>
+            <td>{{ balance.transactionDatetime }}</td>
+            <td>{{ balance.description }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<ngx-spinner><p style="color: white"> Searching... </p></ngx-spinner>

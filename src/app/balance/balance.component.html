@@ -1,0 +1,54 @@
+<app-header></app-header>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-lg-12">
+      <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group row">
+          <label for="account" class="col-sm-4 col-form-label col-form-label">
+            Account No
+          </label>
+          <div class="col-sm-6">
+            <input type="text"
+                   formControlName="account"
+                   name="account"
+                   id="account"
+                   class="form-control"
+                   required />
+            <div class="alert alert-danger mt-3" *ngIf="account.invalid && (account.dirty || account.touched)">
+              Please provide a valid Account No
+            </div>
+            <div class="alert alert-danger" *ngIf="account.hasError('isAccountInvalid')">
+              Invalid Account No
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <button type="submit" [disabled]="!accountForm.valid" class="btn btn-block btn-primary">
+              Search
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <hr class="mb-5"/>
+
+  <div *ngIf="balance">
+
+    <div class="row">
+      <div class="col-lg-12">
+        <h4>A\C No: {{ balance.accountNo }}</h4>
+        <h4>Account Holder: {{ balance.accountHolder}}</h4>
+        <h2 class="text-primary">Current Balance: {{ balance.balance }} BDT</h2>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<ngx-spinner><p style="color: white"> Searching... </p></ngx-spinner>

@@ -1,0 +1,47 @@
+<app-header></app-header>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h3>Customer List</h3>
+      <a class="btn btn-outline-primary float-right mb-5" routerLink="/create-report">Create Report</a>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Customer Name</th>
+          <th scope="col">Account No</th>
+          <th scope="col">Account Type</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let customer of customers; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ customer.fullName }}</td>
+        <td>{{ customer.accountNo }}</td>
+        <td>{{ customer.accountType }}</td>
+        <td>
+          <a class="btn btn-info" routerLink="/customer-detail/{{customer.id}}" target="_blank">
+            View Details
+          </a>
+          &nbsp;&nbsp;
+          <a *ngIf="customer.accountTypeId === 2" class="btn btn-primary" routerLink="/customer-upload/{{customer.id}}" target="_blank">
+            Upload Files
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>
+
+<ngx-spinner><p style="color: white"> Loading... </p></ngx-spinner>

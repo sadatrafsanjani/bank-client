@@ -1,0 +1,42 @@
+<app-header></app-header>
+
+<div class="container">
+
+  <div *ngIf="customer">
+
+    <div class="row mb-3">
+      <div class="col-lg-10">
+        <h3>{{ customer.fullName }}</h3>
+      </div>
+      <div class="col-lg-2">
+        <img src="" alt="" class="img-thumbnail border" />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-lg-12">
+        <h4>Personal Information</h4><hr />
+        <p> Customer Name: {{ customer.fullName }} </p>
+        <p> NID No: {{ customer.nidNo }} </p>
+        <p> Date of Birth: {{ customer.dob }} </p>
+        <p> Phone No: {{ customer.phoneNo }} </p>
+        <p> Address: {{ customer.address }} </p>
+        <p> Father's Name: {{ customer.fatherName }} </p>
+        <p> Mother's Name: {{ customer.motherName }} </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <h4>Account Information</h4><hr />
+        <p> Account No: {{ customer.accountNo }} </p>
+        <p> Account Type: {{ customer.accountType }} </p>
+        <p> Current Balance: {{ customer.balance }} BDT</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<ngx-spinner><p style="color: white"> Loading... </p></ngx-spinner>

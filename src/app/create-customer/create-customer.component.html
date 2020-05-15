@@ -1,0 +1,163 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+
+      <div class="card">
+        <div class="card-header bg-dark text-white">
+          <h3 class="text-center">Create Customer</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+
+            <div class="form-group row">
+              <label for="fullname" class="col-sm-4 col-form-label col-form-label">
+                Full Name
+              </label>
+              <div class="col-sm-8">
+                <input type="text"
+                       formControlName="fullname"
+                       name="fullname"
+                       id="fullname"
+                       class="form-control"
+                       required />
+                <div class="alert alert-danger" *ngIf="fullname.invalid && (fullname.dirty || fullname.touched)">
+                  Please provide full name
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="dob" class="col-sm-4 col-form-label col-form-label">
+                Date of Birth
+              </label>
+              <div class="col-sm-8">
+                <input type="date"
+                       formControlName="dob"
+                       name="dob"
+                       id="dob"
+                       class="form-control"
+                       required />
+                <div class="alert alert-danger" *ngIf="dob.invalid && (dob.dirty || dob.touched)">
+                  Please provide date of birth
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="nid" class="col-sm-4 col-form-label col-form-label">
+                NID No
+              </label>
+              <div class="col-sm-8">
+                <input type="text"
+                       formControlName="nid"
+                       name="nid"
+                       id="nid"
+                       class="form-control"
+                       required />
+                <div class="alert alert-danger" *ngIf="nid.invalid && (nid.dirty || nid.touched)">
+                  Please provide NID No
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="fathername" class="col-sm-4 col-form-label col-form-label">
+                Father Name
+              </label>
+              <div class="col-sm-8">
+                <input type="text"
+                       formControlName="fathername"
+                       name="fathername"
+                       id="fathername"
+                       class="form-control"
+                       required />
+                <div class="alert alert-danger" *ngIf="fathername.invalid && (fathername.dirty || fathername.touched)">
+                  Please provide father name
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="fullname" class="col-sm-4 col-form-label col-form-label">
+                Mother Name
+              </label>
+              <div class="col-sm-8">
+                <input type="text"
+                       formControlName="mothername"
+                       name="mothername"
+                       id="mothername"
+                       class="form-control"
+                       required />
+                <div class="alert alert-danger" *ngIf="mothername.invalid && (mothername.dirty || mothername.touched)">
+                  Please provide mother name
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="phone" class="col-sm-4 col-form-label col-form-label">
+                Phone No
+              </label>
+              <div class="col-sm-8">
+                <input type="text"
+                       formControlName="phone"
+                       name="phone"
+                       id="phone"
+                       class="form-control"
+                       required />
+                <div class="alert alert-danger" *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+                  Please provide phone no
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="address" class="col-sm-4 col-form-label col-form-label">
+                Address
+              </label>
+              <div class="col-sm-8">
+            <textarea formControlName="address"
+                      name="address"
+                      id="address"
+                      class="form-control"
+                      required></textarea>
+                <div class="alert alert-danger" *ngIf="address.invalid && (address.dirty || address.touched)">
+                  Please provide address
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="product" class="col-sm-4 col-form-label col-form-label">
+                Account Type
+              </label>
+              <div class="col-sm-8">
+                <select formControlName="product"
+                        name="product"
+                        id="product"
+                        class="form-control">
+                  <option>-SELECT-</option>
+                  <option *ngFor="let product of products" [ngValue]="product.id">
+                    {{ product.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <button type="submit" [disabled]="!customerForm.valid" class="btn btn-block btn-success">
+                  Save
+                </button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-spinner><p style="color: white"> Please wait... </p></ngx-spinner>
