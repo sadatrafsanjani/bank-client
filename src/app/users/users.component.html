@@ -18,8 +18,6 @@
           <th scope="col">User</th>
           <th scope="col">Email</th>
           <th scope="col">Status</th>
-          <th scope="col">Allowed Menus</th>
-          <th scope="col">Menu Access</th>
         </tr>
       </thead>
       <tbody>
@@ -30,12 +28,6 @@
           <td>
             <button *ngIf="!user.status" class="btn btn-success" (click)="activate(user.id)">Activate</button>
             <button *ngIf="user.status" class="btn btn-danger" (click)="deactivate(user.id)">Deactivate</button>
-          </td>
-          <td>
-            <a class="btn btn-info" routerLink="/allowed-menus/{{user.id}}">Allowed Menus</a>
-          </td>
-          <td>
-            <a class="btn btn-primary" routerLink="/assign-menu/{{user.id}}">Assign Menus</a>
           </td>
         </tr>
       </tbody>

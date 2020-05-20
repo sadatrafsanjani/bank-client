@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {UserService} from '../service/user.service';
 import {MenuResponse} from '../response/menu-response';
 import {MenuService} from '../service/menu.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MenuPayload} from '../payload/menu-payload';
 import {AuthenticationService} from '../service/authentication.service';
+import {RoleService} from '../service/role.service';
 
 @Component({
   selector: 'app-assign-menu',
@@ -22,14 +22,14 @@ export class AssignMenuComponent implements OnInit {
   menuPayload: MenuPayload;
 
   constructor(private authenticationService: AuthenticationService,
-              private userService: UserService,
+              private roleService: RoleService,
               private menuService: MenuService,
               private route: ActivatedRoute,
               private router: Router,
               private toastr: ToastrService,
               private spinner: NgxSpinnerService) {
     this.menuPayload = {
-      menus: [],
+      menus: []
     };
   }
 
@@ -66,7 +66,7 @@ export class AssignMenuComponent implements OnInit {
     this.spinner.show();
     this.menuPayload.menus = this.menu.value;
 
-    this.userService.updateMenu(this.id, this.menuPayload).subscribe(data => {
+    this.roleService.updateMenu(this.id, this.menuPayload).subscribe(data => {
         this.spinner.hide();
         this.toastr.success('Menu Updated!');
     },
