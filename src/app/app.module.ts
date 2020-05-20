@@ -28,6 +28,7 @@ import { CustomerUploadComponent } from './customer-upload/customer-upload.compo
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AssignMenuComponent } from './assign-menu/assign-menu.component';
+import { AllowedMenusComponent } from './allowed-menus/allowed-menus.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { AssignMenuComponent } from './assign-menu/assign-menu.component';
     CustomerUploadComponent,
     ForgetPasswordComponent,
     ResetPasswordComponent,
-    AssignMenuComponent
+    AssignMenuComponent,
+    AllowedMenusComponent
   ],
   imports: [
     BrowserModule,

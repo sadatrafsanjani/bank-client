@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {UserService} from '../service/user.service';
@@ -7,6 +7,7 @@ import {MenuResponse} from '../response/menu-response';
 import {MenuService} from '../service/menu.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MenuPayload} from '../payload/menu-payload';
+import {AuthenticationService} from '../service/authentication.service';
 
 @Component({
   selector: 'app-assign-menu',
@@ -20,9 +21,11 @@ export class AssignMenuComponent implements OnInit {
   menuForm: FormGroup;
   menuPayload: MenuPayload;
 
-  constructor(private userService: UserService,
+  constructor(private authenticationService: AuthenticationService,
+              private userService: UserService,
               private menuService: MenuService,
               private route: ActivatedRoute,
+              private router: Router,
               private toastr: ToastrService,
               private spinner: NgxSpinnerService) {
     this.menuPayload = {
@@ -31,6 +34,10 @@ export class AssignMenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    if (!this.authenticationService.isAdmin()){
+      this.router.navigateByUrl('/home');
+    }
 
     this.menuForm = new FormGroup({
       menu: new FormControl('', [Validators.required])

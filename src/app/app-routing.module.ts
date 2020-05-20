@@ -19,6 +19,7 @@ import {CustomerUploadComponent} from './customer-upload/customer-upload.compone
 import {ForgetPasswordComponent} from './forget-password/forget-password.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
 import {AssignMenuComponent} from './assign-menu/assign-menu.component';
+import {AllowedMenusComponent} from './allowed-menus/allowed-menus.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthenticationGuard]  },
   { path: 'create-user', component: CreateUserComponent, canActivate: [AuthenticationGuard]  },
   { path: 'users', component: UsersComponent, canActivate: [AuthenticationGuard]  },
+  { path: 'allowed-menus/:id', component: AllowedMenusComponent, canActivate: [AuthenticationGuard]  },
   { path: 'assign-menu/:id', component: AssignMenuComponent, canActivate: [AuthenticationGuard]  },
   { path: 'deposit', component: DepositComponent, canActivate: [AuthenticationGuard]  },
   { path: 'withdraw', component: WithdrawComponent, canActivate: [AuthenticationGuard]  },

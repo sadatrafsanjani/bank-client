@@ -16,6 +16,9 @@ export class CustomerUploadComponent implements OnInit {
   id: number;
   uploadForm: FormGroup;
   uploadPayload: UploadPayload;
+  nidFile: string;
+  pictureFile: string;
+  formData = new FormData();
 
   constructor(private uploadService: UploadService,
               private route: ActivatedRoute,
@@ -36,43 +39,39 @@ export class CustomerUploadComponent implements OnInit {
 
     this.uploadForm = new FormGroup({
       nid: new FormControl('', [Validators.required]),
-      picture: new FormControl('', [Validators.required]),
-      fileSource: new FormControl('', [Validators.required])
+      picture: new FormControl('', [Validators.required])
     });
   }
 
   onNidChange(event) {
 
-    if (event.target.files.length > 0) {
+    const reader = new FileReader();
+    reader.readAsArrayBuffer(event.target.files[0]);
 
-      const file = event.target.files[0];
+    reader.onload = function(){
+      const buffer = this.result;
+      const array = new Uint8Array(buffer as ArrayBuffer);
 
-      this.uploadForm.patchValue({
+      return  String.fromCharCode.apply(null, array);
+    };
+  }
 
-        fileSource: file
-
-      });
-
-    }
+  onPictureChange(event) {
 
   }
 
   onSubmit(){
 
-    const reader = new FileReader();
-    const buffer = reader.readAsArrayBuffer(this.uploadForm.get('fileSource').value);
+    console.log(this.formData);
 
-
-
-    console.log(typeof reader);
-
-    this.uploadService.uploadFiles(this.uploadPayload).subscribe(data => {
+    /*this.uploadService.uploadFiles(this.uploadPayload).subscribe(data => {
       console.log('');
-    });
+    });*/
 
   }
 
-  convertToArray(){
+  convertToBuffer(data) {
+
 
   }
 }

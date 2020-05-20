@@ -32,6 +32,10 @@ export class CreateUserComponent implements OnInit {
 
   ngOnInit() {
 
+    if (!this.authenticationService.isAdmin()){
+      this.router.navigateByUrl('/home');
+    }
+
     this.registerForm = new FormGroup({
       username: new FormControl('', [
         Validators.required, Validators.minLength(3)

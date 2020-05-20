@@ -5,6 +5,7 @@ import {PasswordPayload} from '../payload/password-payload';
 import {UserResponse} from '../response/user-response';
 import {map} from 'rxjs/operators';
 import {MenuPayload} from '../payload/menu-payload';
+import {AllowedMenuResponse} from '../response/allowed-menu-response';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,11 @@ export class UserService {
           return (data.status === 200) ? true : false;
         }
       ));
+  }
+
+  getAllowedMenus(id: number): Observable<Array<AllowedMenuResponse>> {
+
+    return this.http.get<Array<AllowedMenuResponse>>(this.url + '/allowed/menus/' + id);
   }
 
   updateMenu(id: number, payload: MenuPayload){
