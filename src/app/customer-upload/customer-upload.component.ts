@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {UploadService} from '../service/upload.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {UploadPayload} from '../payload/upload-payload';
 
 @Component({
   selector: 'app-customer-upload',
@@ -15,20 +14,14 @@ export class CustomerUploadComponent implements OnInit {
 
   id: number;
   uploadForm: FormGroup;
-  uploadPayload: UploadPayload;
-  nidFile: string;
-  pictureFile: string;
-  formData = new FormData();
+  nidFile: File = null;
+  pictureFile: File = null;
 
   constructor(private uploadService: UploadService,
+              private router: Router,
               private route: ActivatedRoute,
               private toastr: ToastrService,
               private spinner: NgxSpinnerService) {
-    this.uploadPayload = {
-      customerId: 0,
-      nid: null,
-      picture: null
-    };
   }
 
   ngOnInit(): void {
@@ -45,33 +38,41 @@ export class CustomerUploadComponent implements OnInit {
 
   onNidChange(event) {
 
-    const reader = new FileReader();
-    reader.readAsArrayBuffer(event.target.files[0]);
-
-    reader.onload = function(){
-      const buffer = this.result;
-      const array = new Uint8Array(buffer as ArrayBuffer);
-
-      return  String.fromCharCode.apply(null, array);
-    };
+    this.nidFile = event.target.files[0];
   }
 
   onPictureChange(event) {
 
+    this.pictureFile = event.target.files[0];
   }
 
   onSubmit(){
 
-    console.log(this.formData);
+    this.spinner.show();
 
-    /*this.uploadService.uploadFiles(this.uploadPayload).subscribe(data => {
-      console.log('');
-    });*/
+    const formData = new FormData();
+    formData.append('nid', this.nidFile);
+    formData.append('picture', this.pictureFile);
 
-  }
+    this.uploadService.uploadFiles(this.id, formData).subscribe(data => {
 
-  convertToBuffer(data) {
+      this.spinner.hide();
 
+      console.log(data.status);
+
+      if (data.status === 204){
+          this.toastr.success('Upload Successful!');
+          this.router.navigateByUrl('customer-detail/' + this.id);
+        }
+        else{
+          this.toastr.error('Upload Failed!');
+        }
+      },
+      error => {
+        this.spinner.hide();
+        this.toastr.error(error);
+      }
+    );
 
   }
 }

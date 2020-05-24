@@ -82,7 +82,6 @@ export class TokenInterceptor implements HttpInterceptor {
   private addToken(req: HttpRequest<any>, jwtToken: string) {
     return req.clone({
       headers: req.headers
-        .set('Content-Type', 'application/json')
         .set('Authorization', 'Bearer ' + jwtToken)
     });
   }

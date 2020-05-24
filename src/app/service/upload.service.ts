@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {UploadPayload} from '../payload/upload-payload';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +11,8 @@ export class UploadService {
 
   constructor(private http: HttpClient) {}
 
-  uploadFiles(payload: UploadPayload): Observable<any> {
+  uploadFiles(id: number, payload: FormData): Observable<any> {
 
-    return this.http.post(this.url, payload, {responseType: 'text'});
+    return this.http.put(this.url + '/' + id, payload, {observe: 'response'});
   }
 }
