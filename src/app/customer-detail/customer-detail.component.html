@@ -5,17 +5,12 @@
   <div *ngIf="customer">
 
     <div class="row mb-3">
-      <div class="col-lg-10 text-center">
-        <h3>Customer Details</h3>
-      </div>
-      <div class="col-lg-2">
-        <img src="" alt="" class="img-thumbnail border" />
-      </div>
-    </div>
 
-    <div class="row mb-3">
       <div class="col-lg-12">
         <h4>Personal Information</h4><hr />
+      </div>
+
+      <div class="col-lg-9">
         <p> Customer Name: {{ customer.fullName }} </p>
         <p> NID No: {{ customer.nidNo }} </p>
         <p> Date of Birth: {{ customer.dob }} </p>
@@ -23,6 +18,19 @@
         <p> Address: {{ customer.address }} </p>
         <p> Father's Name: {{ customer.fatherName }} </p>
         <p> Mother's Name: {{ customer.motherName }} </p>
+      </div>
+
+      <div class="col-lg-3">
+        <div class="card">
+          <img src="favicon.ico" alt="picture" class="card-img-top" />
+          <div class="card-body">
+            <a *ngIf="customer.accountTypeId === 2"
+               class="btn btn-primary btn-block"
+               routerLink="/customer-upload/{{customer.id}}" target="_blank">
+              Upload Files
+            </a>
+          </div>
+        </div>
       </div>
     </div>
 
