@@ -16,6 +16,8 @@ export class CustomerUploadComponent implements OnInit {
   uploadForm: FormGroup;
   nidFile: File = null;
   pictureFile: File = null;
+  nidPreview: any;
+  picturePreview: any;
 
   constructor(private uploadService: UploadService,
               private router: Router,
@@ -39,11 +41,27 @@ export class CustomerUploadComponent implements OnInit {
   onNidChange(event) {
 
     this.nidFile = event.target.files[0];
+
+    const reader = new FileReader();
+
+    reader.onload = (e: any) => {
+      this.nidPreview = e.target.result;
+    };
+
+    reader.readAsDataURL(this.nidFile);
   }
 
   onPictureChange(event) {
 
     this.pictureFile = event.target.files[0];
+
+    const reader = new FileReader();
+
+    reader.onload = (e: any) => {
+      this.picturePreview = e.target.result;
+    };
+
+    reader.readAsDataURL(this.pictureFile);
   }
 
   onSubmit(){
@@ -57,8 +75,6 @@ export class CustomerUploadComponent implements OnInit {
     this.uploadService.uploadFiles(this.id, formData).subscribe(data => {
 
       this.spinner.hide();
-
-      console.log(data.status);
 
       if (data.status === 204){
           this.toastr.success('Upload Successful!');
