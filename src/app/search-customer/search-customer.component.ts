@@ -4,6 +4,8 @@ import {CustomerService} from '../service/customer.service';
 import {ToastrService} from 'ngx-toastr';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UploadResponse} from '../response/upload-response';
+import {UploadService} from '../service/upload.service';
 
 @Component({
   selector: 'app-search-customer',
@@ -14,8 +16,11 @@ export class SearchCustomerComponent implements OnInit {
 
   accountForm: FormGroup;
   customer: CustomerResponse;
+  nid: any;
+  picture: any;
 
   constructor(private customerService: CustomerService,
+              private uploadService: UploadService,
               private toastr: ToastrService,
               private spinner: NgxSpinnerService) {}
 
@@ -39,6 +44,7 @@ export class SearchCustomerComponent implements OnInit {
     this.customerService.getCustomerByAccountNo(this.account.value).subscribe((data: CustomerResponse) => {
         this.customer = data;
         this.spinner.hide();
+        this.getCustomerUpload(data.id);
       },
       error => {
         this.spinner.hide();
@@ -63,5 +69,22 @@ export class SearchCustomerComponent implements OnInit {
     });
 
     return promise;
+  }
+
+  private getCustomerUpload(id: number){
+
+    this.spinner.show();
+
+    this.uploadService.getUploadByCustomerId(id).subscribe((data: UploadResponse) => {
+
+        this.nid = 'data:image/jpeg;base64,' + data.nid;
+        this.picture = 'data:image/jpeg;base64,' + data.picture;
+        this.spinner.hide();
+      },
+      error => {
+        this.spinner.hide();
+        this.toastr.error(error);
+      }
+    );
   }
 }
