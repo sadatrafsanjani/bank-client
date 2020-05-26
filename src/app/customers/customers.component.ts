@@ -27,6 +27,7 @@ export class CustomersComponent implements OnInit {
     this.spinner.show();
     this.customerService.getCustomers().subscribe(data => {
         this.customers = data;
+        console.log(data);
         this.spinner.hide();
       },
       error => {

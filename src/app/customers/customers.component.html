@@ -32,7 +32,7 @@
             View Details
           </a>
           &nbsp;&nbsp;
-          <a *ngIf="(customer.accountTypeId === 2) && (!customer.updateStatus)"
+          <a *ngIf="(customer.accountTypeId === 2) && (!customer.uploadStatus)"
              class="btn btn-primary" routerLink="/customer-upload/{{customer.id}}" target="_blank">
             Upload Files
           </a>

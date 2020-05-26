@@ -12,5 +12,5 @@ export class CustomerResponse {
     phoneNo: string;
     address: string;
     balance: number;
-    updateStatus: boolean;
+    uploadStatus: boolean;
 }
