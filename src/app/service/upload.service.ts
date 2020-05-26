@@ -21,4 +21,14 @@ export class UploadService {
 
     return this.http.put(this.url + '/' + id, payload, {observe: 'response'});
   }
+
+  updateNid(id: number, payload: FormData): Observable<any> {
+
+    return this.http.put(this.url + '/nid/' + id, payload, {observe: 'response'});
+  }
+
+  updatePicture(id: number, payload: FormData): Observable<any> {
+
+    return this.http.put(this.url + '/picture/' + id, payload, {observe: 'response'});
+  }
 }
