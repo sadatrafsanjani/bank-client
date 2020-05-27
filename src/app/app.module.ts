@@ -29,6 +29,8 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AssignMenuComponent } from './assign-menu/assign-menu.component';
 import { RolesComponent } from './roles/roles.component';
+import * as bootstrap from 'bootstrap';
+import * as $ from 'jquery';
 
 @NgModule({
   declarations: [

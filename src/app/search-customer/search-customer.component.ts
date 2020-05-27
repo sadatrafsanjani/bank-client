@@ -44,7 +44,10 @@ export class SearchCustomerComponent implements OnInit {
     this.customerService.getCustomerByAccountNo(this.account.value).subscribe((data: CustomerResponse) => {
         this.customer = data;
         this.spinner.hide();
-        this.getCustomerUpload(data.id);
+
+        if (data.uploadStatus){
+          this.getCustomerUpload(data.id);
+        }
       },
       error => {
         this.spinner.hide();

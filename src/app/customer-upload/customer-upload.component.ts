@@ -89,6 +89,5 @@ export class CustomerUploadComponent implements OnInit {
         this.toastr.error(error);
       }
     );
-
   }
 }
