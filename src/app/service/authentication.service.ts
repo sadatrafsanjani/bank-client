@@ -32,6 +32,7 @@ export class AuthenticationService {
         this.storage.store('loginToken', response.loginToken);
         this.storage.store('refreshToken', response.refreshToken);
         this.storage.store('expiresAt', response.expiresAt);
+        this.storage.store('picture', response.picture);
 
         return true;
       }
@@ -53,6 +54,7 @@ export class AuthenticationService {
       this.storage.clear('loginToken');
       this.storage.clear('refreshToken');
       this.storage.clear('expiresAt');
+      this.storage.clear('picture');
 
       return true;
     }));
@@ -98,6 +100,18 @@ export class AuthenticationService {
   getUserName() {
 
     return this.storage.retrieve('username');
+  }
+
+  loadProfilePicture() {
+
+    return this.storage.retrieve('picture');
+  }
+
+  setProfilePicture(picture: []){
+
+    this.storage.clear('picture');
+    this.storage.store('picture', picture);
+
   }
 
   refreshToken(refreshTokenPayload: RefreshTokenPayload) {

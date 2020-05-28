@@ -16,8 +16,17 @@
             Home
           </a>
         </li>
-        <li class="nav-item" *ngIf="isAuthenticated()">
-          <button class="btn nav text-white" (click)="logout()">Logout</button>
+        <li class="nav-item dropdown no-arrow" *ngIf="isAuthenticated()">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="mr-2 d-none d-lg-inline text-white text-capitalize">{{ getCurrentUser() }}</span>
+            <img class="img-profile rounded-circle bg-light" [src]="profilePicture" alt="" />
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" routerLink="/profile">Profile</a>
+            <a class="dropdown-item" routerLink="/change-password">Change Password</a>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item" (click)="logout()">Logout</button>
+          </div>
         </li>
       </ul>
     </div>

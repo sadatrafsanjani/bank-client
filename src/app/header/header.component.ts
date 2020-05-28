@@ -11,6 +11,7 @@ import {ToastrService} from 'ngx-toastr';
 export class HeaderComponent implements OnInit {
 
   navigation: string;
+  profilePicture: any;
 
   constructor(private authenticationService: AuthenticationService,
               private router: Router,
@@ -26,6 +27,17 @@ export class HeaderComponent implements OnInit {
     }
     else{
       this.navigation = '/';
+    }
+
+    this.loadProfilePicture();
+  }
+
+  private loadProfilePicture(){
+
+    const picture = this.authenticationService.loadProfilePicture();
+
+    if (picture != null){
+      this.profilePicture = 'data:image/jpeg;base64,' + picture;
     }
   }
 
@@ -56,5 +68,10 @@ export class HeaderComponent implements OnInit {
         this.toastr.error('Logout Failed!');
       }
     );
+  }
+
+  getCurrentUser(){
+
+    return this.authenticationService.getUserName();
   }
 }

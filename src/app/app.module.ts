@@ -31,6 +31,7 @@ import { AssignMenuComponent } from './assign-menu/assign-menu.component';
 import { RolesComponent } from './roles/roles.component';
 import * as bootstrap from 'bootstrap';
 import * as $ from 'jquery';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import * as $ from 'jquery';
     ForgetPasswordComponent,
     ResetPasswordComponent,
     AssignMenuComponent,
-    RolesComponent
+    RolesComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

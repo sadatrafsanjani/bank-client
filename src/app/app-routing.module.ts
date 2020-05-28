@@ -20,11 +20,13 @@ import {ForgetPasswordComponent} from './forget-password/forget-password.compone
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
 import {AssignMenuComponent} from './assign-menu/assign-menu.component';
 import {RolesComponent} from './roles/roles.component';
+import {ProfileComponent} from './profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard]  },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthenticationGuard]  },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthenticationGuard]  },
   { path: 'create-user', component: CreateUserComponent, canActivate: [AuthenticationGuard]  },
   { path: 'users', component: UsersComponent, canActivate: [AuthenticationGuard]  },
   { path: 'roles', component: RolesComponent, canActivate: [AuthenticationGuard]  },

@@ -31,7 +31,7 @@
               Update Picture
             </button>
             <input type="file" id="pictureBrowser"
-                   accept=".jpg"
+                   accept=".jpg, .jpeg"
                    data-max-size="1024"
                    (change)="onPictureSelected($event)"
                    required hidden />
@@ -63,7 +63,7 @@
               Update NID
             </button>
             <input type="file" id="nidBrowser"
-                   accept=".jpg"
+                   accept=".jpg, .jpeg"
                    data-max-size="1024"
                    (change)="onNidSelected($event)"
                    required hidden />
@@ -87,7 +87,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body text-center">
         <img *ngIf="picturePreview" [src]="picturePreview" class="figure-img img-fluid rounded" alt="" />
       </div>
       <div class="modal-footer">
@@ -108,7 +108,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body text-center">
         <img *ngIf="nidPreview" [src]="nidPreview" class="figure-img img-fluid rounded" alt="" />
       </div>
       <div class="modal-footer">

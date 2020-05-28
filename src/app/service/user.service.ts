@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {PasswordPayload} from '../payload/password-payload';
 import {UserResponse} from '../response/user-response';
 import {map} from 'rxjs/operators';
+import {PictureResponse} from '../response/picture-response';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,11 @@ export class UserService {
     return this.http.get<UserResponse>(this.url + '/' + id);
   }
 
+  getUserProfilePicture(id: number): Observable<PictureResponse> {
+
+    return this.http.get<PictureResponse>(this.url + '/picture/' + id);
+  }
+
   changePassword(id: number, payload: PasswordPayload): Observable<any> {
 
     return this.http.put(this.url + '/change/password/' + id, payload);
@@ -45,11 +51,15 @@ export class UserService {
 
   deactivateUser(id: number): Observable<any> {
 
-    console.log(id);
     return this.http.get(this.url + '/deactivate/' + id, {observe: 'response'}).pipe(
       map(data => {
           return (data.status === 200) ? true : false;
         }
       ));
+  }
+
+  updatePicture(id: number, payload: FormData): Observable<any> {
+
+    return this.http.put(this.url + '/picture/' + id, payload, {observe: 'response'});
   }
 }

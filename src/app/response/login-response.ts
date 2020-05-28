@@ -6,4 +6,5 @@ export class LoginResponse {
     refreshToken: string;
     roles: Array<number>;
     expiresAt: string;
+    picture: [];
 }

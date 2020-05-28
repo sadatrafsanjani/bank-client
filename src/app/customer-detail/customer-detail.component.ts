@@ -71,12 +71,12 @@ export class CustomerDetailComponent implements OnInit {
 
   openPictureBrowser(){
 
-    document.getElementById('pictureBrowser').click();
+    $('#pictureBrowser').trigger('click');
   }
 
   openNidBrowser(){
 
-    document.getElementById('nidBrowser').click();
+    $('#nidBrowser').trigger('click');
   }
 
   onPictureSelected(event) {

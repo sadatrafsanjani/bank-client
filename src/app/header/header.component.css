@@ -1,0 +1,9 @@
+
+.dropdown.no-arrow .dropdown-toggle::after {
+  display: none;
+}
+
+.img-profile {
+  height: 1.5rem;
+  width: 1.5rem;
+}
