@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../service/authentication.service';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
+import { faUser, faLock, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +13,9 @@ export class HeaderComponent implements OnInit {
 
   navigation: string;
   profilePicture: any;
+  faUser = faUser;
+  faLock = faLock;
+  faSignOutAlt = faSignOutAlt;
 
   constructor(private authenticationService: AuthenticationService,
               private router: Router,
@@ -44,11 +48,6 @@ export class HeaderComponent implements OnInit {
   isAdmin(): boolean {
 
     return this.authenticationService.isAdmin();
-  }
-
-  isCustomer(): boolean {
-
-    return this.authenticationService.isUser();
   }
 
   isAuthenticated(): boolean {

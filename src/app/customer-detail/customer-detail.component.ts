@@ -170,4 +170,14 @@ export class CustomerDetailComponent implements OnInit {
       }
     );
   }
+
+  zoomPicture(){
+
+    $('#pictureZoomModal').modal('show');
+  }
+
+  zoomNid(){
+
+    $('#nidZoomModal').modal('show');
+  }
 }

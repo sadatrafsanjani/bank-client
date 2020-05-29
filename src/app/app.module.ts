@@ -29,9 +29,10 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AssignMenuComponent } from './assign-menu/assign-menu.component';
 import { RolesComponent } from './roles/roles.component';
+import { ProfileComponent } from './profile/profile.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import * as bootstrap from 'bootstrap';
 import * as $ from 'jquery';
-import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -63,13 +64,14 @@ import { ProfileComponent } from './profile/profile.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FontAwesomeModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    NgxWebstorageModule.forRoot(),
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
       preventDuplicates: true
-    }),
-    NgxWebstorageModule.forRoot()
+    })
   ],
   providers: [
     {

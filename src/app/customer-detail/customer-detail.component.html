@@ -23,8 +23,10 @@
       <div class="col-lg-3">
 
         <div class="card">
-          <img *ngIf="picture" [src]="picture" alt="picture" class="card-img-top" />
           <div class="card-body">
+
+            <img *ngIf="picture" [src]="picture" alt="picture" class="card-img-top mb-3" (click)="zoomPicture()" />
+
             <button *ngIf="customer.accountTypeId === 2"
                     (click)="openPictureBrowser()"
                     class="btn btn-primary btn-block">
@@ -55,8 +57,10 @@
 
       <div class="col-lg-3">
         <div class="card">
-          <img *ngIf="nid" [src]="nid" alt="nid" class="card-img-top" />
           <div class="card-body">
+
+            <img *ngIf="nid" [src]="nid" alt="nid" class="card-img-top mb-3" (click)="zoomNid()" />
+
             <button *ngIf="customer.accountTypeId === 2"
                     (click)="openNidBrowser()"
                     class="btn btn-primary btn-block">
@@ -114,6 +118,40 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" (click)="onNidUpdate()" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PICTURE ZOOM MODAL -->
+<div class="modal fade" id="pictureZoomModal" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="pictureZoomBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="pictureZoomBackdropLabel">Picture</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <img *ngIf="picture" [src]="picture" class="figure-img img-fluid rounded" alt="" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NID ZOOM MODAL -->
+<div class="modal fade" id="nidZoomModal" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="nidZoomBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="nidZoomBackdropLabel">National ID Card</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <img *ngIf="nid" [src]="nid" class="figure-img img-fluid rounded" alt="" />
       </div>
     </div>
   </div>

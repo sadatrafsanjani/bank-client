@@ -1,3 +1,7 @@
 #pictureBrowser, #nidBrowser {
   visibility: hidden;
 }
+
+.col-lg-3 img:first-child:hover {
+  cursor: zoom-in;
+}

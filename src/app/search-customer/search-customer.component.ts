@@ -56,7 +56,7 @@ export class SearchCustomerComponent implements OnInit {
     );
   }
 
-  checkAccountNo(control: FormControl){
+  private checkAccountNo(control: FormControl){
 
     const promise = new Promise<any>((resolve, reject) => {
       setTimeout(() => {
@@ -89,5 +89,15 @@ export class SearchCustomerComponent implements OnInit {
         this.toastr.error(error);
       }
     );
+  }
+
+  zoomPicture(){
+
+    $('#pictureZoomModal').modal('show');
+  }
+
+  zoomNid(){
+
+    $('#nidZoomModal').modal('show');
   }
 }
