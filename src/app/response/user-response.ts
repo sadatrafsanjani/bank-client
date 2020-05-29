@@ -5,4 +5,5 @@ export class UserResponse {
     email: string;
     status: boolean;
     roles: Array<number>;
+    picture: [];
 }

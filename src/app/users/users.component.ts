@@ -30,7 +30,8 @@ export class UsersComponent implements OnInit {
     this.getEmployees();
   }
 
-  getEmployees() {
+  private getEmployees() {
+
     this.spinner.show();
     this.userService.getEmployees().subscribe(
       data => {
@@ -47,7 +48,10 @@ export class UsersComponent implements OnInit {
   activate(id: number) {
     this.spinner.show();
     this.userService.activateUser(id).subscribe(data => {
-      console.log(data);
+
+      if (data.response === 204){
+        this.toastr.success('User Activated!');
+      }
     });
     this.spinner.hide();
   }
@@ -55,8 +59,15 @@ export class UsersComponent implements OnInit {
   deactivate(id: number) {
     this.spinner.show();
     this.userService.deactivateUser(id).subscribe(data => {
-      console.log(data);
+      if (data.response === 204){
+        this.toastr.success('User Deactivated!');
+      }
     });
     this.spinner.hide();
+  }
+
+  convertPicture(thumbnail){
+
+    return 'data:image/jpeg;base64,' + thumbnail;
   }
 }

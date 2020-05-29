@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {PasswordPayload} from '../payload/password-payload';
 import {UserResponse} from '../response/user-response';
-import {map} from 'rxjs/operators';
 import {PictureResponse} from '../response/picture-response';
 
 @Injectable({
@@ -42,20 +41,12 @@ export class UserService {
 
   activateUser(id: number): Observable<any> {
 
-    return this.http.get(this.url + '/activate/' + id, {observe: 'response'}).pipe(
-      map(data => {
-          return (data.status === 200) ? true : false;
-        }
-      ));
+    return this.http.get(this.url + '/activate/' + id, {observe: 'response'});
   }
 
   deactivateUser(id: number): Observable<any> {
 
-    return this.http.get(this.url + '/deactivate/' + id, {observe: 'response'}).pipe(
-      map(data => {
-          return (data.status === 200) ? true : false;
-        }
-      ));
+    return this.http.get(this.url + '/deactivate/' + id, {observe: 'response'});
   }
 
   updatePicture(id: number, payload: FormData): Observable<any> {
