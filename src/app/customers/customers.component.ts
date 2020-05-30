@@ -3,6 +3,8 @@ import {CustomerService} from '../service/customer.service';
 import {CustomerResponse} from '../response/customer-response';
 import {ToastrService} from 'ngx-toastr';
 import {NgxSpinnerService} from 'ngx-spinner';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 @Component({
   selector: 'app-customers',
@@ -27,7 +29,6 @@ export class CustomersComponent implements OnInit {
     this.spinner.show();
     this.customerService.getCustomers().subscribe(data => {
         this.customers = data;
-        console.log(data);
         this.spinner.hide();
       },
       error => {
@@ -35,5 +36,12 @@ export class CustomersComponent implements OnInit {
         this.toastr.error(error);
       }
     );
+  }
+
+  generateReport(){
+
+    const doc = new jsPDF();
+    autoTable(doc, { html: '#customerTable' });
+    doc.save('customers.pdf');
   }
 }
