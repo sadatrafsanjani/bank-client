@@ -44,8 +44,14 @@
 
     <div class="row">
       <div class="col-lg-12">
-        <h3></h3>
-        <table class="table">
+        <button class="btn btn-outline-primary float-right mb-5" (click)="generateHistory()">Generate Report</button>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-lg-12">
+        <table id="historyTable" class="table">
           <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
@@ -63,9 +69,9 @@
             <th scope="row">{{ i + 1}}</th>
             <td>{{ balance.accountNo }}</td>
             <td>{{ balance.accountHolder }}</td>
-            <td>{{ balance.debit }}</td>
-            <td>{{ balance.credit }}</td>
-            <td>{{ balance.balance }}</td>
+            <td>{{ balance.debit }} BDT</td>
+            <td>{{ balance.credit }} BDT</td>
+            <td>{{ balance.balance }} BDT</td>
             <td>{{ balance.transactionDatetime }}</td>
             <td>{{ balance.description }}</td>
           </tr>

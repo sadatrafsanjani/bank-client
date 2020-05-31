@@ -6,6 +6,7 @@ import {CustomerResponse} from '../response/customer-response';
 import {ActivatedRoute} from '@angular/router';
 import {UploadService} from '../service/upload.service';
 import {UploadResponse} from '../response/upload-response';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-customer-detail',
@@ -179,5 +180,23 @@ export class CustomerDetailComponent implements OnInit {
   zoomNid(){
 
     $('#nidZoomModal').modal('show');
+  }
+
+  generateReport(){
+
+    const doc = new jsPDF();
+
+    doc.addImage(this.picture, 'JPEG', 150, 10, 40, 40);
+    doc.text('Name: ' + this.customer.fullName, 20, 20);
+    doc.text('Account No: ' + this.customer.accountNo, 20, 30);
+    doc.text('Account Type: ' + this.customer.accountType, 20, 40);
+    doc.text('Balance: ' + this.customer.balance.toString() + 'BDT', 20, 50);
+    doc.text('Date of Birth: ' + this.customer.dob, 20, 60);
+    doc.text('NID No: ' + this.customer.nidNo, 20, 70);
+    doc.text('Phone No: ' + this.customer.phoneNo, 20, 80);
+    doc.text('Address: ' + this.customer.address, 20, 90);
+    doc.text('Father Name: ' + this.customer.fatherName, 20, 100);
+    doc.text('Mother Name: ' + this.customer.motherName, 20, 110);
+    doc.save('customer.pdf');
   }
 }

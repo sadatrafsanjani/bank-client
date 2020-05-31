@@ -5,6 +5,8 @@ import {ToastrService} from 'ngx-toastr';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {BalanceService} from '../service/balance.service';
 import {BalanceResponse} from '../response/balance-response';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 @Component({
   selector: 'app-history',
@@ -65,5 +67,12 @@ export class HistoryComponent implements OnInit {
     });
 
     return promise;
+  }
+
+  generateHistory(){
+
+    const doc = new jsPDF();
+    autoTable(doc, { html: '#historyTable' });
+    doc.save('history.pdf');
   }
 }
