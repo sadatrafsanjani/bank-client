@@ -25,12 +25,12 @@ export class BalanceService {
 
   deposit(payload: TransactionPayload): Observable<any> {
 
-    return this.http.post(this.url + '/debit', payload, {responseType: 'text'});
+    return this.http.post(this.url + '/credit', payload, {responseType: 'text'});
   }
 
   withdraw(payload: TransactionPayload): Observable<any> {
 
-    return this.http.post(this.url + '/credit', payload, {responseType: 'text'});
+    return this.http.post(this.url + '/debit', payload, {responseType: 'text'});
   }
 
 }

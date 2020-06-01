@@ -54,14 +54,12 @@ export class ChangePasswordComponent implements OnInit {
 
     this.userService.changePassword(id, this.passwordPayload).subscribe(
       data => {
+
         this.spinner.hide();
-        if (this.authenticationService.isAdmin()){
-          this.router.navigateByUrl('/dashboard');
-        }
-        else if (this.authenticationService.isUser()){
-          this.router.navigateByUrl('/home');
-        }
+
+        this.router.navigateByUrl('/home');
         this.toastr.success('Password Changed!');
+
       },
       error => {
         this.spinner.hide();

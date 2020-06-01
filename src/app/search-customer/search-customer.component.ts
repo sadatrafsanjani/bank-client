@@ -27,7 +27,7 @@ export class SearchCustomerComponent implements OnInit {
   ngOnInit(): void {
     this.accountForm = new FormGroup({
       account: new FormControl('',
-        [Validators.required, Validators.minLength(3)],
+        [Validators.required, Validators.minLength(3), Validators.pattern('^[0-9]*$')],
         this.checkAccountNo.bind(this))
     });
   }

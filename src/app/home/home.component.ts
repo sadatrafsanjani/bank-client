@@ -20,4 +20,8 @@ export class HomeComponent implements OnInit {
   isUser() {
     return this.authenticationService.isUser();
   }
+
+  isAllowed(id: number){
+    return this.authenticationService.isAllowed(id);
+  }
 }

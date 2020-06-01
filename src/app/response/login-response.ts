@@ -7,4 +7,5 @@ export class LoginResponse {
     roles: Array<number>;
     expiresAt: string;
     picture: [];
+    pages: [];
 }

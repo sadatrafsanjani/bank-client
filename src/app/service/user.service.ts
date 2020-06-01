@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {PasswordPayload} from '../payload/password-payload';
 import {UserResponse} from '../response/user-response';
 import {PictureResponse} from '../response/picture-response';
+import {MenuPayload} from '../payload/menu-payload';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,7 @@ export class UserService {
 
   changePassword(id: number, payload: PasswordPayload): Observable<any> {
 
-    return this.http.put(this.url + '/change/password/' + id, payload);
+    return this.http.put(this.url + '/change/pass/' + id, payload, {observe: 'response'});
   }
 
   activateUser(id: number): Observable<any> {
@@ -52,5 +53,10 @@ export class UserService {
   updatePicture(id: number, payload: FormData): Observable<any> {
 
     return this.http.put(this.url + '/picture/' + id, payload, {observe: 'response'});
+  }
+
+  updateMenu(id: number, payload: MenuPayload){
+
+    return this.http.put(this.url + '/assign/menu/' + id, payload);
   }
 }

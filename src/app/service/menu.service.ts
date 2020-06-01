@@ -16,4 +16,8 @@ export class MenuService {
     return this.http.get<Array<MenuResponse>>(this.url);
   }
 
+  getUserMenus(): Observable<Array<MenuResponse>>{
+    return this.http.get<Array<MenuResponse>>(this.url + '/user');
+  }
+
 }

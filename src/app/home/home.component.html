@@ -28,15 +28,6 @@
       </div>
     </div>
 
-    <div class="col-sm-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Roles</h5>
-          <a routerLink="/roles" class="btn btn-primary">See Details</a>
-        </div>
-      </div>
-    </div>
-
   </div>
 
 </div><!-- END ADMIN PANEL -->
@@ -53,7 +44,8 @@
   </div>
 
   <div class="row mb-4">
-    <div class="col-sm-4">
+
+    <div *ngIf="isAllowed(1)" class="col-sm-4">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Customers</h5>
@@ -61,7 +53,8 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
+
+    <div *ngIf="isAllowed(2)" class="col-sm-4">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">New Customer</h5>
@@ -69,7 +62,8 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
+
+    <div *ngIf="isAllowed(3)" class="col-sm-4">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Search Customer</h5>
@@ -77,9 +71,10 @@
         </div>
       </div>
     </div>
+
   </div>
 
-  <div class="row mb-4">
+  <div *ngIf="isAllowed(4)" class="row mb-4">
     <div class="col-sm-4">
       <div class="card">
         <div class="card-body">
@@ -88,7 +83,8 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
+
+    <div *ngIf="isAllowed(5)" class="col-sm-4">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Deposit</h5>
@@ -96,7 +92,8 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
+
+    <div *ngIf="isAllowed(6)" class="col-sm-4">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Withdraw</h5>
@@ -108,7 +105,7 @@
 
   <div class="row">
 
-    <div class="col-sm-4">
+    <div *ngIf="isAllowed(7)" class="col-sm-4">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Transaction History</h5>
@@ -116,6 +113,7 @@
         </div>
       </div>
     </div>
+
   </div>
 
 </div><!-- END EMPLOYEE PANEL -->

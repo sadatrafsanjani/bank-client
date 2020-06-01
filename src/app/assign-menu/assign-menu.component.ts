@@ -7,7 +7,7 @@ import {MenuService} from '../service/menu.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MenuPayload} from '../payload/menu-payload';
 import {AuthenticationService} from '../service/authentication.service';
-import {RoleService} from '../service/role.service';
+import {UserService} from '../service/user.service';
 
 @Component({
   selector: 'app-assign-menu',
@@ -22,7 +22,7 @@ export class AssignMenuComponent implements OnInit {
   menuPayload: MenuPayload;
 
   constructor(private authenticationService: AuthenticationService,
-              private roleService: RoleService,
+              private userService: UserService,
               private menuService: MenuService,
               private route: ActivatedRoute,
               private router: Router,
@@ -56,7 +56,7 @@ export class AssignMenuComponent implements OnInit {
   }
 
   getMenus(){
-    this.menuService.getMenus().subscribe(data => {
+    this.menuService.getUserMenus().subscribe(data => {
       this.menus = data;
     });
   }
@@ -66,13 +66,15 @@ export class AssignMenuComponent implements OnInit {
     this.spinner.show();
     this.menuPayload.menus = this.menu.value;
 
-    this.roleService.updateMenu(this.id, this.menuPayload).subscribe(data => {
+    this.userService.updateMenu(this.id, this.menuPayload).subscribe(
+      data => {
         this.spinner.hide();
         this.toastr.success('Menu Updated!');
     },
       error => {
         this.spinner.hide();
         this.toastr.error(error);
-      });
+      }
+    );
   }
 }

@@ -33,6 +33,7 @@ export class AuthenticationService {
         this.storage.store('refreshToken', response.refreshToken);
         this.storage.store('expiresAt', response.expiresAt);
         this.storage.store('picture', response.picture);
+        this.storage.store('pages', response.pages);
 
         return true;
       }
@@ -55,6 +56,7 @@ export class AuthenticationService {
       this.storage.clear('refreshToken');
       this.storage.clear('expiresAt');
       this.storage.clear('picture');
+      this.storage.clear('pages');
 
       return true;
     }));
@@ -149,5 +151,12 @@ export class AuthenticationService {
           return (data.status === 200) ? true : false;
         }
       ));
+  }
+
+  isAllowed(id: number){
+
+    const pages = this.storage.retrieve('pages');
+
+    return pages.indexOf(id) > -1 ? true : false;
   }
 }

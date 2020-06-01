@@ -17,9 +17,4 @@ export class RoleService {
 
     return this.http.get<Array<RoleResponse>>(this.url);
   }
-
-  updateMenu(id: number, payload: MenuPayload){
-
-    return this.http.put(this.url + '/assign/menus/' + id, payload);
-  }
 }
