@@ -42,12 +42,12 @@ export class UserService {
 
   activateUser(id: number): Observable<any> {
 
-    return this.http.get(this.url + '/activate/' + id, {observe: 'response'});
+    return this.http.put(this.url + '/activate/' + id, null, {observe: 'response'});
   }
 
   deactivateUser(id: number): Observable<any> {
 
-    return this.http.get(this.url + '/deactivate/' + id, {observe: 'response'});
+    return this.http.put(this.url + '/deactivate/' + id, null, {observe: 'response'});
   }
 
   updatePicture(id: number, payload: FormData): Observable<any> {

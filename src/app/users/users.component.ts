@@ -49,7 +49,8 @@ export class UsersComponent implements OnInit {
     this.spinner.show();
     this.userService.activateUser(id).subscribe(data => {
 
-      if (data.response === 204){
+      if (data.status === 204){
+        this.getEmployees();
         this.toastr.success('User Activated!');
       }
     });
@@ -59,7 +60,9 @@ export class UsersComponent implements OnInit {
   deactivate(id: number) {
     this.spinner.show();
     this.userService.deactivateUser(id).subscribe(data => {
-      if (data.response === 204){
+
+      if (data.status === 204){
+        this.getEmployees();
         this.toastr.success('User Deactivated!');
       }
     });
