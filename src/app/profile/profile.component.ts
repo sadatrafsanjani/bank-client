@@ -4,7 +4,6 @@ import {ToastrService} from 'ngx-toastr';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {UserService} from '../service/user.service';
 import {PictureResponse} from '../response/picture-response';
-import {HeaderComponent} from '../header/header.component';
 
 @Component({
   selector: 'app-profile',

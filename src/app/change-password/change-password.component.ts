@@ -83,5 +83,4 @@ export class ChangePasswordComponent implements OnInit {
 
     return promise;
   }
-
 }
